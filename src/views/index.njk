@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="refresh" content="60">
+  <title>DreamQuest</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main>
+  <header>
+    <div><small>DreamQuest</small><h1>Server status</h1></div>
+    <span class="status {{ overall }}">{{ overall | upper }}</span>
+  </header>
+
+  <section class="metrics">
+    <div class="card"><small>Uptime</small><b>{{ system.uptime }}</b></div>
+    <div class="card"><small>Load</small><b>{{ system.load }}</b></div>
+    <div class="card"><small>Memory</small><b>{{ system.memory }}</b></div>
+    <div class="card"><small>Temperature</small><b>{{ system.temperature }}</b></div>
+  </section>
+
+  <h2>Storage</h2>
+  <section class="grid">
+    {% for x in storage %}<div class="card row"><b>{{ x.label }}</b><span class="status {{x.status}}">{{x.message}}</span></div>{% endfor %}
+  </section>
+
+  <h2>Services</h2>
+  <section class="grid">
+    {% for x in services %}<div class="card row"><b>{{x.label}}</b><span class="status {{x.status}}">{{x.message}}</span></div>{% endfor %}
+  </section>
+
+  <h2>Applications</h2>
+  <section class="grid">
+    {% for x in apps %}<div class="card row"><a href="{{x.publicUrl}}">{{x.name}}</a><span class="status {{x.status}}">{{x.message}}</span></div>{% endfor %}
+  </section>
+
+  <h2>Docker</h2>
+  <section class="grid">
+    {% for x in docker.containers %}<div class="card row"><b>{{x.name}}</b><span class="status {{x.status}}">{{x.state}}</span></div>{% endfor %}
+  </section>
+
+  <h2>Backup</h2>
+  <div class="card row"><b>Latest backup</b><span class="status {{backup.status}}">{{backup.message}}</span></div>
+
+  <footer>Updated {{updated}} · refreshes every 60 seconds</footer>
+</main>
+</body>
+</html>
