@@ -6,7 +6,7 @@ body {
   margin: 0;
   background: #111;
   color: #eee;
-  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 main {
@@ -19,6 +19,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: end;
+  gap: 16px;
   margin-bottom: 24px;
 }
 
@@ -33,7 +34,7 @@ h2 {
 }
 
 small {
-  opacity: 0.55;
+  opacity: .55;
 }
 
 .grid,
@@ -48,6 +49,7 @@ small {
 }
 
 .card {
+  min-width: 0;
   padding: 15px;
   border: 1px solid #303030;
   border-radius: 10px;
@@ -56,6 +58,7 @@ small {
 
 .card b {
   display: block;
+  min-width: 0;
 }
 
 .metrics b {
@@ -66,14 +69,26 @@ small {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15px;
+  gap: 12px;
+  min-width: 0;
+}
+
+.row > :first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .status {
-  font-size: 0.78rem;
-  padding: 4px 8px;
+  flex: 0 1 auto;
+  max-width: 60%;
+  font-size: .78rem;
+  line-height: 1.25;
+  padding: 5px 9px;
   border-radius: 999px;
-  white-space: nowrap;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .ok {
@@ -101,7 +116,27 @@ a:hover {
 }
 
 footer {
-  opacity: 0.45;
-  font-size: 0.8rem;
+  opacity: .45;
+  font-size: .8rem;
   margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .status {
+    max-width: 100%;
+  }
 }
