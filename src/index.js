@@ -24,10 +24,25 @@ async function collect() {
 }
 
 app.get('/health', async (_req,res) => {
-  const x=await collect();
-  res.status(200).json({status:'ok', monitoredStatus:x.overall});
+  const x = await collect();
+
+  res
+    .status(x.overall === 'error' ? 503 : 200)
+    .json({ status: x.overall });
 });
-app.get('/api/status', async (_req,res)=>res.json(await collect()));
-app.get('/', async (_req,res)=>res.render('index.njk',await collect()));
+
+app.get('/api/status', async (_req,res) => res.json(await collect()));
+
+app.get('/', (_req, res) => {
+  res.render('home.njk');
+});
+
+app.get('/status', async (_req, res) => {
+  try {
+    res.render('status.njk', await collect());
+  } catch {
+    res.status(500).send('Unable to collect DreamQuest status');
+  }
+});
 
 app.listen(port,'127.0.0.1',()=>console.log(`Monitor listening on 127.0.0.1:${port}`));

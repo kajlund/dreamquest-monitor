@@ -199,3 +199,30 @@ footer {
     max-width: 100%;
   }
 }
+
+.home-header {
+  margin: 30px 0 40px;
+}
+
+.home-header h1 {
+  margin-bottom: 8px;
+}
+
+.intro {
+  margin: 0;
+  opacity: .6;
+}
+
+.home-actions {
+  margin-top: 40px;
+  text-align: right;
+}
+
+.status-link {
+  opacity: .7;
+  font-size: .9rem;
+}
+
+.status-link:hover {
+  opacity: 1;
+}

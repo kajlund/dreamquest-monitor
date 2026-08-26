@@ -7,7 +7,7 @@ const apps = [
   },
   {
     name: 'Foodz',
-    description: 'Food application',
+    description: 'Food recipes application',
     healthUrl: 'http://127.0.0.1:5003/health',
     publicUrl: 'https://foodz.dreamquest/'
   },
@@ -15,19 +15,19 @@ const apps = [
     name: 'Proverbs',
     description: 'Proverbs web application',
     healthUrl: 'http://127.0.0.1:5001/',
-    publicUrl: 'https://dreamquest/proverbs/'
+    publicUrl: 'https://proverbs.dreamquest/'
   },
   {
     name: 'Immich',
     description: 'Photos',
     healthUrl: 'http://127.0.0.1:2283/',
-    publicUrl: 'http://dreamquest:2283/'
+    publicUrl: 'https://immich.dreamquest/'
   },
   {
     name: 'Jellyfin',
     description: 'Movies and media',
     healthUrl: 'http://127.0.0.1:8096/',
-    publicUrl: 'http://dreamquest:8096/'
+    publicUrl: 'https://jellyfin.dreamquest/'
   }
 ];
 
