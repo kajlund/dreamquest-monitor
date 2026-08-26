@@ -61,8 +61,67 @@ small {
   min-width: 0;
 }
 
+.app-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 125px;
+  transition:
+    border-color .15s ease,
+    background .15s ease,
+    transform .15s ease;
+}
+
+.app-card:hover {
+  text-decoration: none;
+  border-color: #555;
+  background: #202020;
+  transform: translateY(-1px);
+}
+
+.app-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.app-card-top > div {
+  min-width: 0;
+}
+
+.app-card strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.app-description {
+  display: block;
+  margin-top: 4px;
+  opacity: .55;
+  font-size: .82rem;
+}
+
+.open-app {
+  margin-top: 22px;
+  opacity: .7;
+  font-size: .82rem;
+}
+
+.app-card:hover .open-app {
+  opacity: 1;
+}
+
 .metrics b {
   margin-top: 6px;
+}
+
+.metric-detail {
+  display: block;
+  margin-top: 4px;
+  font-size: .78rem;
+  opacity: .5;
 }
 
 .row {

@@ -15,11 +15,27 @@
   </header>
 
   <section class="metrics">
-    <div class="card"><small>Uptime</small><b>{{ system.uptime }}</b></div>
-    <div class="card"><small>Load</small><b>{{ system.load }}</b></div>
-    <div class="card"><small>Memory</small><b>{{ system.memory }}</b></div>
-    <div class="card"><small>Temperature</small><b>{{ system.temperature }}</b></div>
-  </section>
+    <div class="card">
+      <small>Uptime</small>
+      <b>{{ system.uptime }}</b>
+    </div>
+
+    <div class="card">
+      <small>CPU Load</small>
+      <b>{{ system.load }}</b>
+      <span class="metric-detail">{{ system.loadDetail }}</span>
+    </div>
+
+    <div class="card">
+      <small>Memory</small>
+      <b>{{ system.memory }}</b>
+    </div>
+
+    <div class="card">
+      <small>Temperature</small>
+      <b>{{ system.temperature }}</b>
+    </div>
+</section>
 
   <h2>Storage</h2>
   <section class="grid">
@@ -32,8 +48,24 @@
   </section>
 
   <h2>Applications</h2>
-  <section class="grid">
-    {% for x in apps %}<div class="card row"><a href="{{x.publicUrl}}">{{x.name}}</a><span class="status {{x.status}}">{{x.message}}</span></div>{% endfor %}
+
+  <section class="grid app-grid">
+    {% for app in apps %}
+      <a class="card app-card" href="{{ app.publicUrl }}">
+        <div class="app-card-top">
+          <div>
+            <strong>{{ app.name }}</strong>
+            <span class="app-description">{{ app.description }}</span>
+          </div>
+
+          <span class="status {{ app.status }}">
+            {{ 'ONLINE' if app.status == 'ok' else 'OFFLINE' }}
+          </span>
+        </div>
+
+        <span class="open-app">Open →</span>
+      </a>
+    {% endfor %}
   </section>
 
   <h2>Docker</h2>
