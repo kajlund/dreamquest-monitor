@@ -1,81 +1,88 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>DreamQuest</title>
+  <title>DreamQuest · Server status</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/vendor/phosphor/regular/style.css">
 </head>
-<body>
-<main>
-  <header>
-    <div><small>DreamQuest</small><h1>Server status</h1></div>
-    <span class="status {{ overall }}">{{ overall | upper }}</span>
+<body class="status-page">
+<main class="status-shell">
+  <header class="status-header">
+    <div><a class="eyebrow" href="/">DreamQuest</a><h1>Server status</h1></div>
+    <div class="status-header-right">
+      <nav class="page-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/status" class="nav-link active" aria-current="page">Status</a>
+      </nav>
+      <span class="updated">Updated {{ updated }}</span>
+    </div>
   </header>
 
-  <section class="metrics">
-    <div class="card">
-      <small>Uptime</small>
-      <b>{{ system.uptime }}</b>
-    </div>
-
-    <div class="card">
-      <small>CPU Load</small>
-      <b>{{ system.load }}</b>
-      <span class="metric-detail">{{ system.loadDetail }}</span>
-    </div>
-
-    <div class="card">
-      <small>Memory</small>
-      <b>{{ system.memory }}</b>
-    </div>
-
-    <div class="card">
-      <small>Temperature</small>
-      <b>{{ system.temperature }}</b>
-    </div>
-</section>
-
-  <h2>Storage</h2>
-  <section class="grid">
-    {% for x in storage %}<div class="card row"><b>{{ x.label }}</b><span class="status {{x.status}}">{{x.message}}</span></div>{% endfor %}
-  </section>
-
-  <h2>Services</h2>
-  <section class="grid">
-    {% for x in services %}<div class="card row"><b>{{x.label}}</b><span class="status {{x.status}}">{{x.message}}</span></div>{% endfor %}
-  </section>
-
-  <h2>Applications</h2>
-
-  <section class="grid app-grid">
-    {% for app in apps %}
-      <a class="card app-card" href="{{ app.publicUrl }}">
-        <div class="app-card-top">
-          <div>
-            <strong>{{ app.name }}</strong>
-            <span class="app-description">{{ app.description }}</span>
-          </div>
-
-          <span class="status {{ app.status }}">
-            {{ 'ONLINE' if app.status == 'ok' else 'OFFLINE' }}
-          </span>
+  <section class="overview">
+    <div class="diagnosis">
+      <div class="diagnosis-heading">
+        <span class="diagnosis-icon" aria-hidden="true"><i class="ph ph-warning-circle"></i></span>
+        <div>
+          <span class="diagnosis-state {{ overall }}-text">{{ 'All systems healthy' if overall == 'ok' else 'Needs attention' }}</span>
+          <h2>{% if affected.length %}{{ affected.length }} component{{ '' if affected.length == 1 else 's' }} need attention{% else %}Everything is running normally{% endif %}</h2>
         </div>
+      </div>
+      <p class="diagnosis-copy">{% if overall == 'ok' %}DreamQuest is operating normally. No action is required.{% elif overall == 'warn' %}Core services are available, but a few items should be reviewed.{% else %}One or more services or applications are unavailable. Review the affected components below.{% endif %}</p>
+      {% if affected.length %}
+        <div class="affected" aria-label="Affected components">
+          <span class="affected-label">Affected components</span>
+          <div class="affected-list">
+            {% for item in affected %}{% if loop.index <= 5 %}<span class="affected-pill {{ item.status }}-soft"><span class="status-dot"></span>{{ item.label }}</span>{% endif %}{% endfor %}
+            {% if affected.length > 5 %}<span class="affected-pill more">+{{ affected.length - 5 }} more</span>{% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
 
-        <span class="open-app">Open →</span>
-      </a>
-    {% endfor %}
+    <div class="vitals">
+      <h2>System vitals</h2>
+      <div class="vital-row"><i class="ph ph-clock" aria-hidden="true"></i><span>Uptime</span><strong>{{ system.uptime }}</strong></div>
+      <div class="vital-row"><i class="ph ph-cpu" aria-hidden="true"></i><span>CPU Load<small>{{ system.loadDetail }}</small></span><strong>{{ system.load }}</strong></div>
+      <div class="vital-row"><i class="ph ph-memory" aria-hidden="true"></i><span>Memory</span><strong>{{ system.memory }}</strong></div>
+      <div class="vital-row"><i class="ph ph-thermometer-simple" aria-hidden="true"></i><span>Temperature</span><strong>{{ system.temperature }}</strong></div>
+    </div>
   </section>
 
-  <h2>Docker</h2>
-  <section class="grid">
-    {% for x in docker.containers %}<div class="card row"><b>{{x.name}}</b><span class="status {{x.status}}">{{x.state}}</span></div>{% endfor %}
+  <section class="status-section">
+    <h2>Storage</h2>
+    <div class="status-list status-list-two">{% for x in storage %}<div class="status-row"><strong>{{ x.label }}</strong><span class="inline-status {{x.status}}-text"><span class="status-dot"></span>{{x.message}}</span></div>{% endfor %}</div>
   </section>
 
-  <h2>Backup</h2>
-  <div class="card row"><b>Latest backup</b><span class="status {{backup.status}}">{{backup.message}}</span></div>
+  <section class="status-section">
+    <h2>Services</h2>
+    <div class="service-grid">{% for x in services %}<div class="service-row"><strong>{{x.label}}</strong><span class="inline-status {{x.status}}-text"><span class="status-dot"></span>{{x.message}}</span></div>{% endfor %}</div>
+  </section>
 
-  <footer>Updated {{updated}}</footer>
+  <section class="status-section">
+    <h2>Applications</h2>
+    <div class="app-launcher">
+      {% for app in apps %}
+        <a class="app-item" href="{{ app.publicUrl }}">
+          <span class="app-icon" aria-hidden="true"><i class="ph {% if app.name == 'Healthz' %}ph-heartbeat{% elif app.name == 'Immich' %}ph-image{% elif app.name == 'Jellyfin' %}ph-film-strip{% elif app.name == 'Foodz' %}ph-fork-knife{% elif app.name == 'Proverbs' %}ph-leaf{% else %}ph-chart-line-up{% endif %}"></i></span>
+          <span class="app-meta"><strong>{{ app.name }}</strong><span>{{ app.description }}</span></span>
+          <span class="app-actions"><span class="status {{ app.status }}">{{ 'ONLINE' if app.status == 'ok' else 'OFFLINE' }}</span></span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="status-section compact-section">
+    <h2>Docker</h2>
+    {% if docker.containers.length %}<div class="status-list">{% for x in docker.containers %}<div class="status-row"><strong>{{x.name}}</strong><span class="inline-status {{x.status}}-text"><span class="status-dot"></span>{{x.state}}</span></div>{% endfor %}</div>{% else %}<p class="empty-state">No running containers to display.</p>{% endif %}
+  </section>
+
+  <section class="status-section compact-section backup-section">
+    <h2>Backup</h2>
+    <div class="status-row"><strong>Latest backup</strong><span class="inline-status {{backup.status}}-text"><span class="status-dot"></span>{{backup.message}}</span></div>
+  </section>
 </main>
 </body>
 </html>
