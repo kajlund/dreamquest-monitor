@@ -6,6 +6,12 @@ const apps = [
     publicUrl: 'https://activus.dreamquest/'
   },
   {
+    name: 'Healthz',
+    description: 'Health monitoring',
+    healthUrl: 'http://127.0.0.1:5005/health',
+    publicUrl: 'https://healthz.dreamquest/'
+  },
+  {
     name: 'Foodz',
     description: 'Food recipes application',
     healthUrl: 'http://127.0.0.1:5003/health',
