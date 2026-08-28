@@ -5,7 +5,7 @@ import { getStorage } from './services/storage.js';
 import { getServices } from './services/services.js';
 import { getDocker } from './services/docker.js';
 import { getApps } from './services/apps.js';
-import { getBackup } from './services/backups.js';
+import { getWidgets } from './services/widgets.js';
 
 const app = express();
 const port = Number(process.env.PORT || 5004);
@@ -41,8 +41,13 @@ app.get('/health', async (_req,res) => {
 
 app.get('/api/status', async (_req,res) => res.json(await collect()));
 
-app.get('/', (_req, res) => {
-  res.render('home.njk');
+app.get('/', async (_req, res) => {
+  try {
+    const { quote, weather } = await getWidgets();
+    res.render('home.njk', { quote, weather });
+  } catch {
+    res.render('home.njk');
+  }
 });
 
 app.get('/status', async (_req, res) => {
