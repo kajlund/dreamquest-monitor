@@ -66,7 +66,7 @@
           <span class="widget-label">Quote of the day</span>
         </div>
         <blockquote class="quote-content">{{ quote.text if quote.text else '"A journey of a thousand miles begins with a single step."' }}</blockquote>
-        <cite class="quote-author">{{ quote.author if quote.author else '— Lao Tzu' }}</cite>
+        <cite class="quote-author">— {{ quote.author if quote.author else 'Lao Tzu' }}</cite>
       </article>
 
       <article class="card widget-card weather-widget">

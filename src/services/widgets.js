@@ -1,41 +1,20 @@
-const FALLBACK_QUOTES = [
-  { text: "A journey of a thousand miles begins with a single step.", author: "Lao Tzu" },
-  { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Chinese Proverb" },
-  { text: "Act as if what you do makes a difference. It does.", author: "William James" },
-  { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
-  { text: "Turn your wounds into wisdom.", author: "Oprah Winfrey" },
-  { text: "What we think, we become.", author: "Buddha" },
-  { text: "Happiness depends upon ourselves.", author: "Aristotle" }
-];
-
 export async function getQuote() {
-  const urls = [
-    'http://127.0.0.1:5001/api/random',
-    'https://proverbs.dreamquest/api/random'
-  ];
+  const url = 'http://127.0.0.1:5001/api/random';
+  let text = null;
+  let author = null;
 
-  for (const url of urls) {
-    try {
-      const res = await fetch(url, { signal: AbortSignal.timeout(2000) });
-      if (res.ok) {
-        const data = await res.json();
-        const text = data.quote || data.proverb || data.text || data.content || (typeof data === 'string' ? data : null);
-        const author = data.author || data.origin || data.source || data.by || '';
-        if (text) {
-          return {
-            text: `"${text.replace(/^["']|["']$/g, '')}"`,
-            author: author ? `— ${author}` : ''
-          };
-        }
-      }
-    } catch {}
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(2000) });
+    if (!res.ok) throw new Error('Call to Quotes API failed');
+    const data = await res.json();
+    text = data.proverb.content;
+    author = data.proverb.author;
+  } catch (err) {
+    text = err.message;
+    author = '';
   }
 
-  const randomFallback = FALLBACK_QUOTES[Math.floor(Math.random() * FALLBACK_QUOTES.length)];
-  return {
-    text: `"${randomFallback.text}"`,
-    author: `— ${randomFallback.author}`
-  };
+  return { text, author };
 }
 
 export async function getWeather() {
@@ -77,7 +56,9 @@ export async function getWeather() {
         };
       }
     }
-  } catch {}
+  } catch {
+
+  }
 
   return {
     temp: '20°C',

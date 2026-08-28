@@ -24,7 +24,9 @@
   <section class="overview">
     <div class="diagnosis">
       <div class="diagnosis-heading">
-        <span class="diagnosis-icon" aria-hidden="true"><i class="ph ph-warning-circle"></i></span>
+        <span class="diagnosis-icon {{ overall }}" aria-hidden="true">
+          <i class="ph {% if overall == 'ok' %}ph-check-circle{% elif overall == 'warn' %}ph-warning{% else %}ph-warning-circle{% endif %}"></i>
+        </span>
         <div>
           <span class="diagnosis-state {{ overall }}-text">{{ 'All systems healthy' if overall == 'ok' else 'Needs attention' }}</span>
           <h2>{% if affected.length %}{{ affected.length }} component{{ '' if affected.length == 1 else 's' }} need attention{% else %}Everything is running normally{% endif %}</h2>

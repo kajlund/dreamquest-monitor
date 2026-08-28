@@ -51,7 +51,10 @@ h2 { margin-bottom: 0; font-size: 1rem; letter-spacing: -.01em; }
 .overview { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr); gap: 50px; padding: 8px 0 26px; border-bottom: 1px solid var(--line); }
 .diagnosis { min-width: 0; padding-left: 2px; }
 .diagnosis-heading { display: flex; align-items: center; gap: 20px; }
-.diagnosis-icon { display: grid; flex: 0 0 82px; width: 82px; height: 82px; place-items: center; border: 1px solid #682d2d; border-radius: 50%; background: #35191a; color: var(--error); font-size: 2.65rem; }
+.diagnosis-icon { display: grid; flex: 0 0 82px; width: 82px; height: 82px; place-items: center; border-radius: 50%; border: 1px solid transparent; font-size: 2.65rem; }
+.diagnosis-icon.ok { border-color: #27522d; background: #15331a; color: var(--ok); }
+.diagnosis-icon.warn { border-color: #5c4515; background: #352810; color: var(--warn); }
+.diagnosis-icon.error, .diagnosis-icon { border-color: #682d2d; background: #35191a; color: var(--error); }
 .diagnosis-state { display: block; margin-bottom: 4px; font-size: 1.55rem; font-weight: 680; letter-spacing: -.025em; }
 .diagnosis-heading h2 { font-size: 1.28rem; }
 .diagnosis-copy { max-width: 520px; margin: 22px 0 18px 102px; color: #aeb5bd; font-size: .9rem; }
