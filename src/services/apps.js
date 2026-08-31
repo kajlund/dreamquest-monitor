@@ -6,10 +6,10 @@ const apps = [
     publicUrl: 'https://activus.dreamquest/'
   },
   {
-    name: 'Waymark',
+    name: 'TaskBook',
     description: 'Task management application',
     healthUrl: 'http://127.0.0.1:5006/api/health',
-    publicUrl: 'https://waymark.dreamquest/'
+    publicUrl: 'https://taskbook.dreamquest/'
   },
   {
     name: 'Healthz',

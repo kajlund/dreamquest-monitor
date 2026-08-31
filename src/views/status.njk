@@ -67,7 +67,7 @@
     <h2>Applications</h2>
     <div class="app-launcher">
       {% for app in apps %}
-        <a class="app-item" href="{{ app.publicUrl }}">
+        <a class="app-item" href="{{ app.publicUrl }}" target="_blank" rel="noopener noreferrer">
           <span class="app-icon" aria-hidden="true"><i class="ph {% if app.name == 'Healthz' %}ph-heartbeat{% elif app.name == 'Immich' %}ph-image{% elif app.name == 'Jellyfin' %}ph-film-strip{% elif app.name == 'Foodz' %}ph-fork-knife{% elif app.name == 'Proverbs' %}ph-leaf{% else %}ph-chart-line-up{% endif %}"></i></span>
           <span class="app-meta"><strong>{{ app.name }}</strong><span>{{ app.description }}</span></span>
           <span class="app-actions"><span class="status {{ app.status }}">{{ 'ONLINE' if app.status == 'ok' else 'OFFLINE' }}</span></span>
