@@ -4,7 +4,7 @@ import { getSystem } from './services/system.js';
 import { getStorage } from './services/storage.js';
 import { getServices } from './services/services.js';
 import { getDocker } from './services/docker.js';
-import { getApps } from './services/apps.js';
+import { apps, getApps } from './services/apps.js';
 import { getBackup } from './services/backups.js';
 import { getWidgets } from './services/widgets.js';
 
@@ -45,9 +45,9 @@ app.get('/api/status', async (_req, res) => res.json(await collect()));
 app.get('/', async (_req, res) => {
   try {
     const { quote, weather } = await getWidgets();
-    res.render('home.njk', { quote, weather });
+    res.render('home.njk', { apps, quote, weather });
   } catch {
-    res.render('home.njk');
+    res.render('home.njk', { apps });
   }
 });
 

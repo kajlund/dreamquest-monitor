@@ -1,0 +1,7 @@
+{% macro appIcon(app) %}
+  {% if app.icon %}
+    <img class="app-icon-image" src="{{ app.icon }}" alt="">
+  {% else %}
+    <i class="ph ph-{{ app.fallbackIcon }}" aria-hidden="true"></i>
+  {% endif %}
+{% endmacro %}

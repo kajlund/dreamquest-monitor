@@ -1,45 +1,66 @@
-const apps = [
+export const apps = [
   {
+    id: 'activus',
     name: 'Activus',
     description: 'Activity tracking',
-    healthUrl: 'http://127.0.0.1:5002/',
-    publicUrl: 'https://activus.dreamquest/'
+    healthUrl: 'http://localhost:5002/',
+    publicUrl: 'https://activus.dreamquest/',
+    icon: '/icons/activus.png',
+    fallbackIcon: 'heartbeat'
   },
   {
+    id: 'taskbook',
     name: 'TaskBook',
     description: 'Task management application',
-    healthUrl: 'http://127.0.0.1:5006/api/health',
-    publicUrl: 'https://taskbook.dreamquest/'
+    healthUrl: 'http://localhost:5006/api/health',
+    publicUrl: 'https://taskbook.dreamquest/',
+    icon: '/icons/taskbook.svg',
+    fallbackIcon: 'check-square'
   },
   {
+    id: 'healthz',
     name: 'Healthz',
     description: 'Health monitoring',
-    healthUrl: 'http://127.0.0.1:5005/health',
-    publicUrl: 'https://healthz.dreamquest/'
+    healthUrl: 'http://localhost:5005/health',
+    publicUrl: 'https://healthz.dreamquest/',
+    icon: '',
+    fallbackIcon: 'heartbeat'
   },
   {
-    name: 'Foodz',
+    id: 'mise',
+    name: 'Mise',
     description: 'Food recipes application',
-    healthUrl: 'http://127.0.0.1:5003/health',
-    publicUrl: 'https://foodz.dreamquest/'
+    healthUrl: 'http://localhost:5007/health',
+    publicUrl: 'https://mise.dreamquest/',
+    icon: '/icons/mise.svg',
+    fallbackIcon: 'fork-knife'
   },
   {
-    name: 'Proverbs',
+    id: 'saywell',
+    name: 'Saywell',
     description: 'Proverbs web application',
-    healthUrl: 'http://127.0.0.1:5001/',
-    publicUrl: 'https://proverbs.dreamquest/'
+    healthUrl: 'http://localhost:5008/',
+    publicUrl: 'https://saywell.dreamquest/',
+    icon: '/icons/saywell.png',
+    fallbackIcon: 'quotes'
   },
   {
+    id: 'immich',
     name: 'Immich',
     description: 'Photos',
-    healthUrl: 'http://127.0.0.1:2283/',
-    publicUrl: 'https://immich.dreamquest/'
+    healthUrl: 'http://localhost:2283/',
+    publicUrl: 'https://immich.dreamquest/',
+    icon: '',
+    fallbackIcon: 'image'
   },
   {
+    id: 'jellyfin',
     name: 'Jellyfin',
     description: 'Movies and media',
-    healthUrl: 'http://127.0.0.1:8096/',
-    publicUrl: 'https://jellyfin.dreamquest/'
+    healthUrl: 'http://localhost:8096/',
+    publicUrl: 'https://jellyfin.dreamquest/',
+    icon: '',
+    fallbackIcon: 'film-strip'
   }
 ];
 

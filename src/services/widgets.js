@@ -1,5 +1,5 @@
 export async function getQuote() {
-  const url = 'http://127.0.0.1:5001/api/random';
+  const url = 'http://127.0.0.1:5008/api/random?category=IT';
   let text = null;
   let author = null;
 
