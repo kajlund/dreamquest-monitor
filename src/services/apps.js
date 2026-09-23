@@ -27,6 +27,15 @@ export const apps = [
     fallbackIcon: 'heartbeat'
   },
   {
+    id: 'penga',
+    name: 'Penga',
+    description: 'Personal finance application',
+    healthUrl: 'http://localhost:5010/health',
+    publicUrl: 'https://penga.dreamquest/',
+    icon: '/icons/penga.svg',
+    fallbackIcon: 'money-bill-1'
+  },
+  {
     id: 'mise',
     name: 'Mise',
     description: 'Food recipes application',
