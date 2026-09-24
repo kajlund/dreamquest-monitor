@@ -3,7 +3,7 @@ export const apps = [
     id: 'activus',
     name: 'Activus',
     description: 'Activity tracking',
-    healthUrl: 'http://localhost:5002/',
+    healthUrl: 'http://127.0.0.1:5009/health',
     publicUrl: 'https://activus.dreamquest/',
     icon: '/icons/activus.png',
     fallbackIcon: 'heartbeat'
@@ -11,8 +11,8 @@ export const apps = [
   {
     id: 'taskbook',
     name: 'TaskBook',
-    description: 'Task management application',
-    healthUrl: 'http://localhost:5006/api/health',
+    description: 'Task management',
+    healthUrl: 'http://127.0.0.1:5006/api/health',
     publicUrl: 'https://taskbook.dreamquest/',
     icon: '/icons/taskbook.svg',
     fallbackIcon: 'check-square'
@@ -21,7 +21,7 @@ export const apps = [
     id: 'healthz',
     name: 'Healthz',
     description: 'Health monitoring',
-    healthUrl: 'http://localhost:5005/health',
+    healthUrl: 'http://127.0.0.1:5005/health',
     publicUrl: 'https://healthz.dreamquest/',
     icon: '',
     fallbackIcon: 'heartbeat'
@@ -29,8 +29,8 @@ export const apps = [
   {
     id: 'penga',
     name: 'Penga',
-    description: 'Personal finance application',
-    healthUrl: 'http://localhost:5010/health',
+    description: 'Personal finance',
+    healthUrl: 'http://127.0.0.1:5010/health',
     publicUrl: 'https://penga.dreamquest/',
     icon: '/icons/penga.svg',
     fallbackIcon: 'money-bill-1'
@@ -38,8 +38,8 @@ export const apps = [
   {
     id: 'mise',
     name: 'Mise',
-    description: 'Food recipes application',
-    healthUrl: 'http://localhost:5007/health',
+    description: 'Food recipes',
+    healthUrl: 'http://127.0.0.1:5007/health',
     publicUrl: 'https://mise.dreamquest/',
     icon: '/icons/mise.svg',
     fallbackIcon: 'fork-knife'
@@ -47,8 +47,8 @@ export const apps = [
   {
     id: 'saywell',
     name: 'Saywell',
-    description: 'Proverbs web application',
-    healthUrl: 'http://localhost:5008/',
+    description: 'Proverbs',
+    healthUrl: 'http://127.0.0.1:5008/',
     publicUrl: 'https://saywell.dreamquest/',
     icon: '/icons/saywell.png',
     fallbackIcon: 'quotes'
@@ -57,7 +57,7 @@ export const apps = [
     id: 'immich',
     name: 'Immich',
     description: 'Photos',
-    healthUrl: 'http://localhost:2283/',
+    healthUrl: 'http://127.0.0.1:2283/',
     publicUrl: 'https://immich.dreamquest/',
     icon: '',
     fallbackIcon: 'image'
@@ -66,7 +66,7 @@ export const apps = [
     id: 'jellyfin',
     name: 'Jellyfin',
     description: 'Movies and media',
-    healthUrl: 'http://localhost:8096/',
+    healthUrl: 'http://127.0.0.1:8096/',
     publicUrl: 'https://jellyfin.dreamquest/',
     icon: '',
     fallbackIcon: 'film-strip'

@@ -33,11 +33,7 @@ async function collect() {
 }
 
 app.get('/health', async (_req, res) => {
-  const x = await collect();
-
-  res
-    .status(x.overall === 'error' ? 503 : 200)
-    .json({ status: x.overall });
+  res.status(200).json({ status: 'ok' });
 });
 
 app.get('/api/status', async (_req, res) => res.json(await collect()));
