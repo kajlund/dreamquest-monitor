@@ -45,6 +45,15 @@ export const apps = [
     fallbackIcon: 'fork-knife'
   },
   {
+    id: 'linksmith',
+    name: 'Linksmith',
+    description: 'Personal resources',
+    healthUrl: 'http://127.0.0.1:5011/health',
+    publicUrl: 'https://linksmith.dreamquest/',
+    icon: '/icons/linksmith.svg',
+    fallbackIcon: 'link'
+  },
+  {
     id: 'saywell',
     name: 'Saywell',
     description: 'Proverbs',
