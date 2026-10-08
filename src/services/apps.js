@@ -23,7 +23,7 @@ export const apps = [
     description: 'Health monitoring',
     healthUrl: 'http://127.0.0.1:5005/health',
     publicUrl: 'https://healthz.dreamquest/',
-    icon: '',
+    icon: 'icons/healthz.svg',
     fallbackIcon: 'heartbeat'
   },
   {
