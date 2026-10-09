@@ -6,7 +6,7 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:5009/health',
     publicUrl: 'https://activus.dreamquest/',
     icon: '/icons/activus.png',
-    fallbackIcon: 'heartbeat'
+    fallbackIcon: 'heartbeat',
   },
   {
     id: 'taskbook',
@@ -15,7 +15,7 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:5006/api/health',
     publicUrl: 'https://taskbook.dreamquest/',
     icon: '/icons/taskbook.svg',
-    fallbackIcon: 'check-square'
+    fallbackIcon: 'check-square',
   },
   {
     id: 'healthz',
@@ -24,7 +24,7 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:5005/health',
     publicUrl: 'https://healthz.dreamquest/',
     icon: 'icons/healthz.svg',
-    fallbackIcon: 'heartbeat'
+    fallbackIcon: 'heartbeat',
   },
   {
     id: 'penga',
@@ -33,7 +33,7 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:5010/health',
     publicUrl: 'https://penga.dreamquest/',
     icon: '/icons/penga.svg',
-    fallbackIcon: 'money-bill-1'
+    fallbackIcon: 'money-bill-1',
   },
   {
     id: 'mise',
@@ -42,7 +42,7 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:5007/health',
     publicUrl: 'https://mise.dreamquest/',
     icon: '/icons/mise.svg',
-    fallbackIcon: 'fork-knife'
+    fallbackIcon: 'fork-knife',
   },
   {
     id: 'linksmith',
@@ -51,7 +51,7 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:5011/health',
     publicUrl: 'https://linksmith.dreamquest/',
     icon: '/icons/linksmith.svg',
-    fallbackIcon: 'link'
+    fallbackIcon: 'link',
   },
   {
     id: 'saywell',
@@ -60,7 +60,7 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:5008/',
     publicUrl: 'https://saywell.dreamquest/',
     icon: '/icons/saywell.png',
-    fallbackIcon: 'quotes'
+    fallbackIcon: 'quotes',
   },
   {
     id: 'immich',
@@ -69,7 +69,7 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:2283/',
     publicUrl: 'https://immich.dreamquest/',
     icon: '',
-    fallbackIcon: 'image'
+    fallbackIcon: 'image',
   },
   {
     id: 'jellyfin',
@@ -78,8 +78,8 @@ export const apps = [
     healthUrl: 'http://127.0.0.1:8096/',
     publicUrl: 'https://jellyfin.dreamquest/',
     icon: '',
-    fallbackIcon: 'film-strip'
-  }
+    fallbackIcon: 'film-strip',
+  },
 ];
 
 async function check(app) {
@@ -89,7 +89,7 @@ async function check(app) {
   try {
     const response = await fetch(app.healthUrl, {
       signal: controller.signal,
-      redirect: 'manual'
+      redirect: 'manual',
     });
 
     const ok = response.status >= 200 && response.status < 500;
@@ -97,13 +97,13 @@ async function check(app) {
     return {
       ...app,
       status: ok ? 'ok' : 'error',
-      message: `HTTP ${response.status}`
+      message: `HTTP ${response.status}`,
     };
   } catch {
     return {
       ...app,
       status: 'error',
-      message: 'Unavailable'
+      message: 'Unavailable',
     };
   } finally {
     clearTimeout(timer);

@@ -5,7 +5,7 @@ async function temperature() {
   try {
     const raw = await fs.readFile(
       '/sys/class/thermal/thermal_zone0/temp',
-      'utf8'
+      'utf8',
     );
 
     return `${(Number(raw.trim()) / 1000).toFixed(1)} °C`;
@@ -35,6 +35,6 @@ export async function getSystem() {
 
     memory: `${(used / 2 ** 30).toFixed(1)} / ${(total / 2 ** 30).toFixed(1)} GB`,
 
-    temperature: await temperature()
+    temperature: await temperature(),
   };
 }

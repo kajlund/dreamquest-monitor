@@ -573,3 +573,16 @@ Run backup
 These should **not** be implemented until authentication, authorization, auditing and tightly scoped privileges have been designed.
 
 The monitoring dashboard should remain read-only by default.
+
+## Linting and formatting
+
+All Dreamquest projects use the same ESLint and Prettier configuration, based on Activus. Run these commands from the repository root:
+
+```sh
+npm run lint
+npm run lint:fix
+npm run format
+npm run format:check
+```
+
+ESLint checks supported JavaScript and TypeScript files and treats warnings as failures. Prettier formats its supported source, configuration, and documentation files with single quotes, trailing commas, and LF line endings. Dependencies, generated builds and test output, local data, editor settings, archived artifacts, and dependency lockfiles are excluded. SQL and Nunjucks templates are outside the installed tools' supported file types.
